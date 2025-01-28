@@ -15,6 +15,8 @@ Pythonプロジェクト用のテンプレートリポジトリ
 │   ├── __init__.py
 │   └── test_sample.py
 ├── .gitignore
+├── Dockerfile
+├── Makefile
 ├── README.md
 ├── pyproject.toml
 ├── requirements-dev.txt
@@ -27,14 +29,14 @@ GitHub Actions でテスト&lintを実行するための設定ファイル。
 
 必要に応じて下記を変更してください。
 
-- Pythonのバージョン (デフォルトは3.11)
+- Pythonのバージョン (デフォルトは3.12)
 
 ```yaml
 ...
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.11
+          python-version: 3.12
 ...
 ```
 
