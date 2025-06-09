@@ -41,6 +41,33 @@ on:
 ...
 ```
 
+## type-check.yml
+
+GitHub Actions で ty による型チェックを実行するための設定ファイル。
+
+必要に応じて下記を変更してください。
+
+- Pythonのバージョン (デフォルトは3.12)
+- tyのバージョン (デフォルトは0.0.1a8)
+- GitHub Actions のトリガー (デフォルトでは Push がトリガー)
+
+```yaml
+...
+on:
+  push:
+...
+```
+
+## claude-review.yml
+
+GitHub Actions で Claude AI によるコードレビューを実行するための設定ファイル。
+Pull Request 内で @claude とメンションするとレビューが実行されます。
+
+> ![IMPORTANT]
+> - AnthropicのAPIキーが必要です。GitHub Secretsに `ANTHROPIC_API_KEY` を設定してください。
+> - [GitHub App](https://github.com/organizations/athenatech-jp/settings/installations/68033881)ページで、リポジトリアクセスを許可してください。
+
+
 ## ローカル環境でのテスト&lint実行方法
 
 ### テスト
