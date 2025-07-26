@@ -24,6 +24,27 @@ Pythonプロジェクト用のテンプレートリポジトリ
 └── uv.lock
 ```
 
+## はじめに
+
+- [Installation | uv](https://docs.astral.sh/uv/getting-started/installation/) を参考にして、 `uv` コマンドをインストールする
+
+```bash
+# macOS and Linux
+curl -LsSf https://astral.sh/uv/install.sh | less
+```
+
+- 依存関係のインストール
+
+```bash
+uv sync
+```
+
+- pre-commitの設定
+
+```bash
+uv run pre-commit install
+```
+
 ## .pre-commit-config.yaml
 
 以下のコマンドを実行することで、pre-commitの設定をインストールできます。
