@@ -53,13 +53,17 @@ jobs:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           timeout_minutes: "60"
-          allowed_tools: "mcp__github__create_pending_pull_request_review,mcp__github__add_pull_request_review_comment_to_pending_review,mcp__github__submit_pending_pull_request_review,mcp__github__get_pull_request_diff"
+          allowed_tools: |
+            mcp__github__create_pending_pull_request_review
+            mcp__github__add_comment_to_pending_review
+            mcp__github__submit_pending_pull_request_review
+            mcp__github__get_pull_request_diff
           direct_prompt: |
             **【レビュー依頼の場合】**
             このプルリクエスト（PR）をレビューし、GitHub のレビュー機能を使ってフィードバックをしてください。作業は次の手順に沿って進めてください：
             1.  **レビューを開始する:** `mcp__github__create_pending_pull_request_review` を使って、保留中のレビューを開始します。
             2.  **変更内容を確認する:** `mcp__github__get_pull_request_diff` を使って、コードの変更点や行番号を把握します。
-            3.  **インラインコメントを追加する:** 改善点や懸念事項があるコードの行には `mcp__github__add_pull_request_review_comment_to_pending_review` を使ってコメントを追加してください。修正方針が明確な場合には積極的にsuggestionを利用してください。
+            3.  **インラインコメントを追加する:** 改善点や懸念事項があるコードの行には `mcp__github__add_comment_to_pending_review` を使ってコメントを追加してください。修正方針が明確な場合には積極的にsuggestionを利用してください。
             4.  **レビューを提出する:** `mcp__github__submit_pending_pull_request_review` を使って、イベントタイプを「COMMENT」に設定し、全体のまとめコメントと共にレビューを提出してください（※「REQUEST_CHANGES」は使わないでください）。
 
             **コメントの書き方に関する重要事項**
