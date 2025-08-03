@@ -1,11 +1,8 @@
 name: Claude Auto Review
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize]
-
-permissions:
-  pull-requests: write
 
 jobs:
   auto-review:
