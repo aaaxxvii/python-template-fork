@@ -8,6 +8,9 @@ init:
 	@echo "\033[1;34m========================================\033[0m"
 
 setup-claude-api-key:
+	@echo "\033[1;34m========================================\033[0m"
+	@echo "\033[1;36m🔑 Setting up Claude API key...\033[0m"
+	@echo "\033[1;34m========================================\033[0m"
 	@mkdir -p ~/.claude
 	@read -s -p "Enter Claude API key: " API_KEY; echo; \
 	if [ -f ~/.claude/settings.json ]; then \
@@ -18,4 +21,5 @@ setup-claude-api-key:
 		mv ~/.claude/settings.json.tmp2 ~/.claude/settings.json.tmp; \
 	fi; \
 	mv ~/.claude/settings.json.tmp ~/.claude/settings.json
-	@echo "Claude API key set"
+	@echo "\033[1;32m✅ Claude API key has been set successfully!\033[0m"
+	@echo "\033[1;34m========================================\033[0m"
