@@ -52,14 +52,7 @@ make init
 make setup-claude-api-key
 ```
 
-```diff
-- "env": {
--   "ANTHROPIC_API_KEY": "sk-ant-api03-...-...-..."
-- }
-+ "env": {
-+   "ANTHROPIC_API_KEY": "sk-ant-api03-...-...-..."
-+ }
-```
+※参考: [\[Claude Code\]任意のAPIを設定する](https://zenn.dev/aew2sbee/articles/claude-code-api-setting)
 
 ## Pull Request で Claude によるコードレビューを実行する
 
