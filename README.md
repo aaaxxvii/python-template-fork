@@ -19,114 +19,56 @@ Pythonプロジェクト用のテンプレートリポジトリ
 │   └── test_sample.py
 ├── .gitignore
 ├── .pre-commit-config.yaml
+├── Makefile
 ├── README.md
 ├── pyproject.toml
 └── uv.lock
 ```
 
-## はじめに
+## Setup
 
-- [Installation | uv](https://docs.astral.sh/uv/getting-started/installation/) を参考にして、 `uv` コマンドをインストールする
+1. [Installation | uv](https://docs.astral.sh/uv/getting-started/installation/) を参考にして、 `uv` コマンドをインストールする
 
 ```bash
 # macOS and Linux
 curl -LsSf https://astral.sh/uv/install.sh | less
 ```
 
-- 依存関係のインストール
+2. 依存関係のインストール
 
 ```bash
 uv sync
 ```
 
-- pre-commitの設定
+3. pre-commitの設定
 
 ```bash
 uv run pre-commit install
 ```
 
-## .pre-commit-config.yaml
+4. Claude Code用に API Key を設定する
 
-以下のコマンドを実行することで、pre-commitの設定をインストールできます。
+- 以下のコマンドを実行すると `~/.claude/settings.json` に Claude API Key が設定されます。
+- **すでに設定されている場合は上書きされます。**
 
 ```bash
-pre-commit install
+make setup-claude-api-key
 ```
 
-## ruff.yml
-
-GitHub Actions で ruff によるコード静的解析を実行するための設定ファイル。
-
-必要に応じて下記を変更してください。
-
-- Pythonのバージョン (デフォルトは3.12)
-- ruffのバージョン (デフォルトは0.11.13)
-- GitHub Actions のトリガー (デフォルトでは Push がトリガー)
-
-```yaml
-...
-on:
-  push:
-...
+```diff
+- "env": {
+-   "ANTHROPIC_API_KEY": "sk-ant-api03-...-...-..."
+- }
++ "env": {
++   "ANTHROPIC_API_KEY": "sk-ant-api03-...-...-..."
++ }
 ```
 
-## type-check.yml
+## Pull Request で Claude によるコードレビューを実行する
 
-GitHub Actions で ty による型チェックを実行するための設定ファイル。
-
-必要に応じて下記を変更してください。
-
-- Pythonのバージョン (デフォルトは3.12)
-- tyのバージョン (デフォルトは0.0.1a8)
-- GitHub Actions のトリガー (デフォルトでは Push がトリガー)
-
-```yaml
-...
-on:
-  push:
-...
-```
-
-## claude-review.yml
-
-GitHub Actions で Claude AI によるコードレビューを実行するための設定ファイル。
-Pull Request 内で @claude とメンションするとレビューが実行されます。
+- Pull Request 内で @claude とメンションするとレビューが実行されます。
 
 > \[!IMPORTANT\]
 >
 > - AnthropicのAPIキーが必要です。GitHub Secretsに `ANTHROPIC_API_KEY` を設定してください。
 > - [GitHub App](https://github.com/organizations/athenatech-jp/settings/installations/68033881)ページで、リポジトリアクセスを許可してください。
-
-## ローカル環境でのテスト&lint実行方法
-
-### テスト
-
-- `tests` ディレクトリ内のすべてのテストを実行
-
-```bash
-pytest tests
-```
-
-- `test_sample.py` のみを実行
-
-```bash
-pytest tests/test_sample.py
-```
-
-### ruffによる静的解析
-
-```bash
-ruff check
-```
-
-### 自動フォーマット
-
-```bash
-ruff format
-```
-
-### tyによる型チェック
-
-```bash
-ty check
-```
